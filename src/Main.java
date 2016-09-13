@@ -58,9 +58,9 @@ public class Main extends JFrame implements ActionListener {
 		image = new ImageIcon(images.get(0).toString());
 		input = new JTextField("", 15);
 		result = new JLabel();
-		introtext = new JLabel("Voer het getal in dat op de afbeelding is te zien.");
-		next = new JButton("Volgende");
-		back = new JButton("Vorige");
+		introtext = new JLabel("Enter the correct number.");
+		next = new JButton("Next");
+		back = new JButton("Previous");
 		back.addActionListener(this);
 		next.addActionListener(this);
 		mypanel = new JPanel();
@@ -85,16 +85,17 @@ public class Main extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == next) {
 			inputValue = input.getText();
-			System.out.println("Verwacht antwoord: " + correct.get(direction));
-			System.out.println("Ingevoerd antwoord: " + inputValue);
+			System.out.println("Correct answer: " + correct.get(direction));
+			System.out.println("Entered answer: " + inputValue);
 			System.out.println("----------------------------------------------------");
 			if (correct.get(direction).toString().equals(inputValue)) {
 				correctIterator++;
+			}
 				direction++;
 				if (direction == images.size()) {
 					direction = 0;
-					System.out.println("Je hebt " + correctIterator	+ " van de 7 getallen goed ingevuld");
-					result.setText("Je hebt " + correctIterator	+ " van de 7 getallen goed ingevuld");
+					System.out.println(correctIterator + " of 7 correctly entered");
+					result.setText(correctIterator	+ " of 7 correctly entered");
 					correctIterator = 0;
 				}
 				if (direction == 1){
@@ -102,22 +103,7 @@ public class Main extends JFrame implements ActionListener {
 				}
 				image = new ImageIcon(images.get(direction).toString());
 				imageLabel.setIcon(image);
-			}
-
-			else {
-				direction++;
-				if (direction == images.size()) {
-					direction = 0;
-					System.out.println("Je hebt " + correctIterator	+ " van de 7 getallen goed ingevuld");
-					result.setText("Je hebt " + correctIterator	+ " van de 7 getallen goed ingevuld");
-					correctIterator = 0;
-				}
-				if (direction == 1){
-					result.setText("");
-				}
-				image = new ImageIcon(images.get(direction).toString());
-				imageLabel.setIcon(image);
-			}
+		
 		}
 
 		else if (event.getSource() == back) {
